@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        h1 {font-family:Helvetica; margin:0px; padding:10px; background-color:darkgrey; color:white }
+        p {font-family: Tahoma}
+        body {font-family: Tahoma; background-color: #333}
+        
+        
+        
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#callGo").on('click', function() {
+                        $.ajax({
+                            url: "http://localhost:8080/callme/",
+                            method: "GET",
+                            success: function(data) {
+                                $("#response").html(data);
+                            },
+                        });
+                    });
+                    $("#callGo2").on('click', function() {
+                        $.ajax({
+                            url: "http://localhost:8080/callme2/",
+                            method: "GET",
+                            success: function(data) {
+                                $("#response").html(data);
+                            },
+                        });
+                    });
+                });
+        </script>
+
+
+
+    </head>
+
+    <body>
+        
+        <h1>Rkt POS, starting up.... </h1>
+        <div style="margin:0px; padding:5px; background-color: cadetblue"><p>Launching... 3... 2... 1...</p>
+            <p>We have lift off.</p>
+            <p>... this is index.html </p>
+            <p>move index to folder pointofsale</p>
+        </div>
+        <div style="padding:50px">
+        <button style="border-radius: 10px;width:100px; height:50px;background-color:transparent; color:white">start</button>
+        </div>
+      
+        <button id="callGo" type="submit">Call Go Code</button>
+        <button id="callGo2" type="submit">Call Go Code</button>
+		<div style="color:white" id="response"></div>
+    </body>
+
+ 
+</html>
+
+
+
