@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	pos "github.com/martinrocket/rkt/pointofsale"
 )
 
 //root directory html page. Users will follow link to start using the application in the correct folder.
@@ -14,17 +16,14 @@ var myPage = `
 
 `
 
-/* using this web site to build app
- * https://www.sohamkamani.com/blog/2017/09/13/how-to-build-a-web-application-in-golang/
- *
- */
-
 // posRouter builds a new Router that will be started by the webserver
 func posRouter() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/callme/", handler2).Methods("GET")
-	r.HandleFunc("/callme2/", handler4).Methods("GET")
-	r.HandleFunc("/pointofsale/", handler3).Methods("GET") // alows GET from webserver root directory
+	log.Println("...")
+	r.HandleFunc("/API/{id:[10]}", handler1)
+	r.HandleFunc("/API/2/", handler2).Methods("GET")
+	r.HandleFunc("/API/3/", handler3).Methods("GET")
+	r.HandleFunc("/API/{sellIem}", pos.SellItem).Methods("GET")
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
 	return r
 }
@@ -32,18 +31,29 @@ func posRouter() *mux.Router {
 func main() {
 	// create the router and start Listen and Server
 	r := posRouter()
+
 	http.ListenAndServe(":8080", r)
-	fmt.Println("RKTPOS running...")
+
+	log.Println("RKTPOS running...")
+
+}
+
+func handler1(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "You called me! h1")
+	log.Println("handler1")
+	log.Println(r.URL.Path)
+	log.Println(r.URL.Query()["id"])
+	z := r.URL.Query()["id"]
+	log.Printf("id = %v of type %T type %T \n", z, z)
 }
 
 func handler2(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "You called me!")
-}
+	fmt.Fprintln(w, "You called me! h2")
+	log.Println("handler2")
 
-func handler4(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Now you called me!")
 }
 
 func handler3(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "clalled POS")
+	fmt.Fprintln(w, "You called me! h3")
+	log.Println("handler3")
 }

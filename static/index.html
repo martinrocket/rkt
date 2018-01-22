@@ -5,6 +5,7 @@
         h1 {font-family:Helvetica; margin:0px; padding:10px; background-color:darkgrey; color:white }
         p {font-family: Tahoma}
         body {font-family: Tahoma; background-color: #333}
+        button {border-radius: 10px;width:100px; height:50px;background-color:transparent; color:white}
         
         
         
@@ -13,9 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $("#callGo").on('click', function() {
+                    $("#callGo1").on('click', function() {
                         $.ajax({
-                            url: "http://localhost:8080/callme/",
+                            url: "http://localhost:8080/API/1?id=10",
                             method: "GET",
                             success: function(data) {
                                 $("#response").html(data);
@@ -24,7 +25,25 @@
                     });
                     $("#callGo2").on('click', function() {
                         $.ajax({
-                            url: "http://localhost:8080/callme2/",
+                            url: "http://localhost:8080/API/2/",
+                            method: "GET",
+                            success: function(data) {
+                                $("#response").html(data);
+                            },
+                        });
+                    });
+                    $("#callGo3").on('click', function() {
+                        $.ajax({
+                            url: "http://localhost:8080/API/3/",
+                            method: "GET",
+                            success: function(data) {
+                                $("#response").html(data);
+                            },
+                        });
+                    });
+                    $("#callGo4").on('click', function() {
+                        $.ajax({
+                            url: "http://localhost:8080/API/4?sellItem=Pepsi",
                             method: "GET",
                             success: function(data) {
                                 $("#response").html(data);
@@ -50,8 +69,10 @@
         <button style="border-radius: 10px;width:100px; height:50px;background-color:transparent; color:white">start</button>
         </div>
       
-        <button id="callGo" type="submit">Call Go Code</button>
-        <button id="callGo2" type="submit">Call Go Code</button>
+        <button id="callGo1" type="submit">Call Go Code1</button>
+        <button id="callGo2" type="submit">Call Go Code2</button>
+        <button id="callGo3" type="submit">Call Go Code3</button>
+        <button id="callGo4" type="submit">Pepsi</button>
 		<div style="color:white" id="response"></div>
     </body>
 
