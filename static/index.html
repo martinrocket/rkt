@@ -5,10 +5,8 @@
         h1 {font-family:Helvetica; margin:0px; padding:10px; background-color:darkgrey; color:white }
         p {font-family: Tahoma}
         body {font-family: Tahoma; background-color: #333}
-        button {border-radius: 10px;width:100px; height:50px;background-color:transparent; color:white}
-        
-        
-        
+        button {border-radius: 10px;width:120px; height:50px;background-color:transparent; color:white}
+        fieldset {font-size: 15px;}
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -60,20 +58,31 @@
     <body>
         
         <h1>Rkt POS, starting up.... </h1>
-        <div style="margin:0px; padding:5px; background-color: cadetblue"><p>Launching... 3... 2... 1...</p>
-            <p>We have lift off.</p>
-            <p>... this is index.html </p>
-            <p>move index to folder pointofsale</p>
+        <div style="margin:0px; padding:1px; background-color: cadetblue"><p>Launching... 3... 2... 1...</p>
         </div>
-        <div style="padding:50px">
+        <div style="margin:0px; padding:15px">
+                
         <button style="border-radius: 10px;width:100px; height:50px;background-color:transparent; color:white">start</button>
         </div>
       
-        <button id="callGo1" type="submit">Call Go Code1</button>
-        <button id="callGo2" type="submit">Call Go Code2</button>
-        <button id="callGo3" type="submit">Call Go Code3</button>
-        <button id="callGo4" type="submit">Pepsi</button>
-		<div style="color:white" id="response"></div>
+       
+        
+        
+        <div style="margin:0px; padding:15px">
+            <fieldset style="width:60%; float:right; margin:0px; padding:30px; border-width:5px; border-style:solid; border-color:cadetblue; border-radius:10px">
+                        <button id="callGo1" type="submit">Call Go Code1</button>
+                        <button id="callGo2" type="submit">Call Go Code2</button>
+                        <button id="callGo3" type="submit">Call Go Code3</button>
+                        <button id="callGo4" type="submit">Pepsi</button>
+                        
+            </fieldset>
+            <fieldset style="width:25%; float:left; border-width:5px; border-style:solid; border-color:cadetblue; border-radius:10px">
+              <legend style="color:white; border-width:5px; border-style:solid; border-color:cadetblue; border-radius:10px">Receipt</legend>
+              <p>
+                <textarea rows = "25" cols="40" id="response" style="font-family: Tahoma; font-size:medium">Your text here</textarea>
+              </p>
+            </fieldset>
+          </form></div>
     </body>
 
  

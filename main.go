@@ -23,7 +23,7 @@ func posRouter() *mux.Router {
 	r.HandleFunc("/API/{id:[10]}", handler1)
 	r.HandleFunc("/API/2/", handler2).Methods("GET")
 	r.HandleFunc("/API/3/", handler3).Methods("GET")
-	r.HandleFunc("/API/{sellIem}", pos.SellItem).Methods("GET")
+	r.HandleFunc("/API/{sellItem}", pos.SellItem).Methods("GET")
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
 	return r
 }
@@ -39,7 +39,7 @@ func main() {
 }
 
 func handler1(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "You called me! h1")
+	fmt.Fprintln(w, "You called me! \nh1")
 	log.Println("handler1")
 	log.Println(r.URL.Path)
 	log.Println(r.URL.Query()["id"])

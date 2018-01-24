@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// SellItem is a function that acts as a handler
+// SellItem is a function that acts as a handler when /API/{sellItem}
 func SellItem(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "You sold an item %v \n", strings.Join(r.URL.Query()["sellItem"], " "))
 	log.Println("func Sell Item")
