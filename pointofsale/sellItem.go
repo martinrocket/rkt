@@ -13,5 +13,5 @@ func SellItem(w http.ResponseWriter, r *http.Request) {
 	log.Println("func Sell Item")
 	log.Println(r.URL.Query()["sellItem"])
 	z := r.URL.Query()["sellItem"]
-	log.Printf("id = %v of type %T type %T \n", z, z)
+	log.Printf("id = %v of type %T \n", z, z)
 }
