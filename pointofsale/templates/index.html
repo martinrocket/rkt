@@ -17,10 +17,10 @@
 			</script>
 	<head>
 		<meta charset="UTF-8">
-		<title>Rkt POS</title>
+		<title>{{.Title}}</title>
 	</head>
 	<body>
-		<div><button>button1</button></div><div><button>button2</button></div>
-		<div>Start Order</div><div>Cash Out</div>
+		{{range .Buttons}}<div><button>{{ . }}</button></div>{{else}}<div><strong>no rows</strong></div>{{end}}
+		{{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
 	</body>
 </html>
