@@ -31,6 +31,8 @@ const tpl string = `
 	</head>
 	<body>
 		{{range .Buttons}}<div><button>{{ . }}</button></div>{{else}}<div><strong>no rows</strong></div>{{end}}
+		<div><button>{{(index .Buttons 1)}}</button></div>
+		<button>{{(index .Buttons 0)}}</button>
 		{{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
 	</body>
 </html>`
@@ -54,7 +56,7 @@ func main() {
 			"Cash Out",
 		},
 		Buttons: []string{
-			"button1",
+			"Button1",
 			"button2",
 		},
 	}
