@@ -1,0 +1,27 @@
+{{ define "POSHeader" }}
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        {{ . }}
+    
+    </head>
+    {{ end }}
+    
+    {{ define "POSBody" }}
+    <body>
+  
+        {{ .Name }}  {{ .PositionX }} {{ .PositionY }}
+    
+    </body>
+    {{ end }}
+
+    {{ define "POSFooter" }}
+    <footer>
+   
+        {{ . }}
+    
+    </footer>
+    
+</html>
+{{ end }}

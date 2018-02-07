@@ -9,6 +9,7 @@ import (
 )
 
 const tpl string = `
+
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -16,7 +17,7 @@ const tpl string = `
                 $(document).ready(function() {
                     $("#callGo1").on('click', function() {
                         $.ajax({
-                            url: "http://localhost:8080/API/1?id=10",
+                            url: {{index .API 0}},
                             method: "GET",
                             success: function(data) {
                                 $("#response").html(data);
@@ -24,6 +25,7 @@ const tpl string = `
                         });
 					});
 				});
+				{{ template "ajax001" }}
 			</script>
 	<head>
 		<meta charset="UTF-8">
@@ -35,20 +37,23 @@ const tpl string = `
 		<button>{{(index .Buttons 0)}}</button>
 		{{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
 	</body>
-</html>`
+</html>
+`
 
 func main() {
 	fmt.Println("hello")
-	fmt.Printf(tpl)
+	//fmt.Printf(tpl)
 	createTmpl()
-	t, err := template.New("index").Parse(tpl)
+	t := template.New("Index")
+	_, err := t.Parse(tpl)
 	if err != nil {
-		log.Printf("Could not parse template, %v with error %v", t, err)
+		log.Printf("*****Could not parse template, %v with error %v", t, err)
 	}
 	data := struct {
 		Title   string
 		Items   []string
 		Buttons []string
+		API     []string
 	}{
 		Title: "Rkt POS",
 		Items: []string{
@@ -59,9 +64,13 @@ func main() {
 			"Button1",
 			"button2",
 		},
+
+		API: []string{
+			"http://localhost:8080/API/1?id=10",
+		},
 	}
 
-	err = t.Execute(os.Stdout, data)
+	err = t.ExecuteTemplate(os.Stdout, "layout", "ajax001")
 	if err != nil {
 		log.Printf("Could not Execute template index.html, %v with error %v\n", t, err)
 	} else {
@@ -75,7 +84,6 @@ func main() {
 
 func createTmpl() {
 	f, err := os.Create("index.html")
-	defer f.Close()
 	if err != nil {
 		log.Printf("Could not build index.html: %v\n", err)
 	} else {
@@ -83,5 +91,6 @@ func createTmpl() {
 	}
 
 	io.WriteString(f, tpl)
+	f.Close()
 
 }

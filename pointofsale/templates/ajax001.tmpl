@@ -1,0 +1,16 @@
+//ajax001.tmpl
+{{define "ajax001"}}
+
+ $(document).ready(function() {
+                    $("#callGo1").on('click', function() {
+                        $.ajax({
+                            url: {{index .API 0}},
+                            method: "GET",
+                            success: function(data) {
+                                $("#response").html(data);
+                            },
+                        });
+					});
+				});
+
+{{end}}

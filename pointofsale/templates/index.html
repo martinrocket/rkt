@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -6,7 +7,7 @@
                 $(document).ready(function() {
                     $("#callGo1").on('click', function() {
                         $.ajax({
-                            url: "http://localhost:8080/API/1?id=10",
+                            url: {{index .API 0}},
                             method: "GET",
                             success: function(data) {
                                 $("#response").html(data);
@@ -14,6 +15,7 @@
                         });
 					});
 				});
+				{{ template "ajax001" }}
 			</script>
 	<head>
 		<meta charset="UTF-8">

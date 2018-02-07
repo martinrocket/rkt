@@ -1,0 +1,22 @@
+{{define "header" }}
+<!DOCTYPE html>
+<html>
+    <header>
+        my header
+        </header>
+
+        {{end}}
+{{define "body"}}
+        <body>
+{{range .GridButtons }}
+{{ .Name }} {{ .Width }} {{ .Height}} {{end}}
+
+
+ </body>
+
+ {{end}}
+{{define "altfooter" }}
+        <footer>
+           altfooter
+        </footer>
+{{end}}
