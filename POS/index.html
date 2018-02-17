@@ -11,7 +11,8 @@
     {{ define "POSBody" }}
     <body>
   
-        {{ .Name }}  {{ .PositionX }} {{ .PositionY }}
+        {{range . }} {{ . }} 
+        {{ end }}
     
     </body>
     {{ end }}
